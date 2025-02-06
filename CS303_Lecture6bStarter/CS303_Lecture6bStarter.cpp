@@ -33,6 +33,36 @@ int main()
         cout << newList.popFront() << endl;
         cout << newList.popBack() << endl;  //TASK 2
         cout << newList.popFront() << endl;
+    
+        myFunction(newList);
+        //printList uses constIterator
+        cout << "LIST:  " << newList.printList() << endl << endl;
+
+        myList::LinkedList<int> newList3 = newList;
+        cout << "LIST3: " << newList3.printList() << endl << endl;
+
+        newList3.pushFront(101);
+        cout << "LIST3: " << newList3.printList() << endl << endl;
+        cout << "LIST:  " << newList.printList() << endl << endl;
+
+        //using an iterator with the doubly linked list
+        myIterator::iterator<int> newListIter(newList.begin());
+
+        newList.insert(1, 99);    //TASK 3
+        cout << "Find 20: " << newList.find(20) << endl;
+        cout << "Find 101: " << newList.find(101) << endl;
+
+        if (newList.remove(3)) cout << "Remove is successful\n";
+        if (newList.addBefore(10, 98)) cout << "addBefore is successful\n";   //TASK 4
+
+        //printList uses constIterator
+        cout << newList.printList() << endl;
+
+        //printList uses iterator
+        while (!(newListIter == newList.end())) {
+            std::cout << *newListIter << "\n";
+            newListIter++;
+        }
     }
     catch (invalid_argument& err) {
         cout << "error caught " << err.what() << endl;
@@ -42,37 +72,6 @@ int main()
     }
     catch (...) {
         cout << "some other error caught\n";
-    }
-
-    myFunction(newList);
-    //printList uses constIterator
-    cout << "LIST:  " << newList.printList() << endl << endl;
-
-    myList::LinkedList<int> newList3 = newList;
-    newList3.pushFront(101);
-    cout << "LIST3: " << newList3.printList() << endl << endl;
-    cout << "LIST:  " << newList.printList() << endl << endl;
-
-    //using an iterator with the doubly linked list
-    myIterator::iterator<int> newListIter(newList.begin());
-
-    newList.insert(1, 99);    //TASK 3
-    cout << "Find 20: " << newList.find(20) << endl;
-    cout << "Find 101: " << newList.find(101) << endl;
-
-    if (newList.remove(3)) cout << "Remove is succesful\n";
-    if (newList.addBefore(99, 98)) cout << "addBefore is succesful\n";
-
-    newListIter++;
-    newListIter++;
-
-    //printList uses constIterator
-    cout << newList.printList() << endl;
-
-    //printList uses iterator
-    while (!(newListIter == newList.end())) {
-        std::cout << *newListIter << "\n";
-        newListIter++;
     }
 
 }

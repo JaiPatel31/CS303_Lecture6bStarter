@@ -37,7 +37,7 @@ namespace myList {
 		bool remove(const ItemType& d);
 
 		void insert(const size_t pos, const ItemType& newValue);
-		bool addBefore(const ItemType& item, const ItemType& value);
+		bool addBefore(const ItemType& item, const ItemType& newValue);
 
 		//myIterator::iterator<ItemType> erase(myIterator::iterator<ItemType> pos);
 		//myIterator::iterator<ItemType> insert(myIterator::iterator<ItemType>, const ItemType& newValue);
@@ -277,49 +277,8 @@ namespace myList {
 		return false;
 	}
 
-	//PRE:  passing in value 'd' (item that will follow value) & value
-	//POST: case 1: 'd' is at the front of the list or is the head
-	//      case 2: 'd' is not in the list, then add value to the end of the list
-	//      case 3: find 'd' and insert value before 'd'
-	template <typename ItemType>
-	bool LinkedList<ItemType>::addBefore(const ItemType& d, const ItemType& value) {
-
-		//d is value at headptr or list is empty
-		if (head == nullptr || head->data == d) {
-			pushFront(value);
-			return true;
-		}
-		//if 'd' is not found - pushback
-		else if (!find(d)) {
-			pushBack(value);
-			return true;
-		}
-
-		DNode<ItemType>* newItem = new DNode<ItemType>;
-		newItem->data = value;
-		newItem->nextPtr = nullptr;
-
-		//add before d
-
-		DNode<ItemType>* tempPtr;
-		tempPtr = head;
-
-		while (tempPtr != nullptr
-			&& tempPtr->nextPtr != nullptr
-			&& tempPtr->nextPtr->data != d) {
-			tempPtr = tempPtr->nextPtr;
-		}
-
-		if (tempPtr->nextPtr != nullptr
-			&& tempPtr->nextPtr->data == d) {
-			newItem->nextPtr = tempPtr->nextPtr;
-			tempPtr->nextPtr = newItem;
-			++numItems;
-			return true;
-		}
-		return false;
-	}
-
+	//TASK 3
+	//NEED TO FINISH
 	//PRE:
 	//POST: 
 	template <typename ItemType>
@@ -327,6 +286,21 @@ namespace myList {
 
 	}
 
+
+	//TASK 4
+	//NEED TO FINISH
+	//PRE:  passing in value 'd' (item that will follow value) & value
+	//POST: case 1: 'd' is at the front of the list or is the head
+	//      case 2: 'd' is not in the list, then add value to the end of the list
+	//      case 3: find 'd' and insert value before 'd'
+	template <typename ItemType>
+	bool LinkedList<ItemType>::addBefore(const ItemType& d, const ItemType& value) {
+
+
+		return false;
+
+
+	}
 	//copy constructor
 	template <typename ItemType>
 	LinkedList<ItemType>::LinkedList (const LinkedList<ItemType>& other) :
@@ -345,7 +319,8 @@ namespace myList {
 
 	//copy assignment operator
 	template <typename ItemType>
-	LinkedList<ItemType>& LinkedList<ItemType>::operator= (const LinkedList<ItemType>& other) {
+	LinkedList<ItemType>& LinkedList<ItemType>::operator= 
+		(const LinkedList<ItemType>& other) {
 		std::cout << "Copy Assignment Operator called\n";
 		if (this == &other)
 			return *this;
