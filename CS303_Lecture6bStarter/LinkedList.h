@@ -88,7 +88,17 @@ namespace myList {
 	template <typename ItemType>
 	void LinkedList<ItemType> ::pushBack(const ItemType& d) {
 		cout << "pushback\n";
-
+		if (head == nullptr) {
+			head = tail = new DNode(item);
+		}
+		else {
+			DNode<ItemType> newNode = new DNode(item);
+			newNode->nextPtr = nullptr;
+			newNode->prevPtr = tail;
+			tail->nextPtr = newNode;
+			tail = newNode;
+		}
+		numItems++;
 		
 	}
 
@@ -150,7 +160,14 @@ namespace myList {
 	template <typename ItemType>
 	ItemType LinkedList<ItemType>::popBack() {
 		cout << "popback:  ";
+		if (head == nullptr) {
+			throw runtime_error("No items in list");
+		}
+		DNode<ItemType> delNode = tail;
 		ItemType popItem = tail->data;
+		tail = delNode->prevPtr;
+		delete delNode;
+		
 		return popItem;
 
 	}
